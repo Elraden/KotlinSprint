@@ -3,17 +3,8 @@ package org.example.lesson_5
 fun main() {
     val rangeNumbers = 0..42
     val randomNumber1 = rangeNumbers.random()
-    var randomNumber2 = rangeNumbers.random()
-
-    if (randomNumber2 == randomNumber1) {
-        randomNumber2 = rangeNumbers.random()
-    }
-
-    var randomNumber3 = rangeNumbers.random()
-
-    if (randomNumber3 == randomNumber1 || randomNumber3 == randomNumber2) {
-        randomNumber3 = rangeNumbers.random()
-    }
+    val randomNumber2 = rangeNumbers.random()
+    val randomNumber3 = rangeNumbers.random()
 
     val winningNumbers = listOf(randomNumber1, randomNumber2, randomNumber3)
 
