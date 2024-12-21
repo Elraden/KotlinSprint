@@ -10,11 +10,13 @@ fun main() {
     println("Введите второе число от 0 до 42")
     val number2 = readln().toInt()
 
-    val match1 = (number1 == WINNING_NUMBER_1 || number1 == WINNING_NUMBER_2)
-    val match2 = (number2 == WINNING_NUMBER_1 || number2 == WINNING_NUMBER_2)
+    val mainPrizeComparison =
+        (number1 == WINNING_NUMBER_1 && number2 == WINNING_NUMBER_2) ||
+        (number1 == WINNING_NUMBER_2 && number2 == WINNING_NUMBER_1)
 
-    val mainPrizeComparison = match1 && match2
-    val consolationPrizeComparison = match1 || match2
+    val consolationPrizeComparison =
+        (number1 == WINNING_NUMBER_1 || number1 == WINNING_NUMBER_2) ||
+        (number2 == WINNING_NUMBER_1 || number2 == WINNING_NUMBER_2)
 
     val resultText = if (mainPrizeComparison) "Поздравляем! Вы выиграли главный приз!"
     else if (consolationPrizeComparison) "Вы выиграли утешительный приз!"
