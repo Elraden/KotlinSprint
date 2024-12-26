@@ -17,7 +17,7 @@ fun main() {
         val authPassword = readln()
         if (regLogin == authLogin && regPassword == authPassword) {
             isAuthorized = true
-            println("Добро пожаловать")
+            println("Авторизация прошла успешно")
         } else {
             println("Неверные данные. Попробуйте еще раз")
         }
