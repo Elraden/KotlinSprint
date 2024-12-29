@@ -12,7 +12,16 @@ fun main() {
         "Чёрный перец"
     )
 
-    for (ingredient in dishIngredients) println(ingredient)
+    println("Список ингредиентов:")
+    var ingredientsString = "["
+    for (i in dishIngredients.indices) {
+        ingredientsString += if (i != dishIngredients.size - 1) {
+            "${dishIngredients[i]}, "
+        } else {
+            "${dishIngredients[i]}]"
+        }
+    }
+    println(ingredientsString)
 
     println("Какой ингредиент вы хотели бы заменить?")
     val userDishIngredient = readln()
@@ -27,11 +36,16 @@ fun main() {
         dishIngredients[index] = addIngredientAsk
     }
 
-    var ingredientsString = ""
-    for (ingredient in dishIngredients) {
-        ingredientsString += "$ingredient\n"
+    var newIngredientsString = "["
+    for (i in dishIngredients.indices) {
+        newIngredientsString += if (i != dishIngredients.size - 1) {
+            "${dishIngredients[i]}, "
+        } else {
+            "${dishIngredients[i]}]"
+        }
     }
-    println("Готово! Вы сохранились следующий список:\n$ingredientsString")
+
+    println("Готово! Вы сохранили следующий список:\n$newIngredientsString")
 
 
 
