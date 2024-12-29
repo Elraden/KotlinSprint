@@ -9,7 +9,7 @@ fun main() {
         val upperCase = 'A'..'Z'
         val allCharacters = digits + lowerCase + upperCase
 
-        var randomPasswordString = "";
+        var randomPasswordString = ""
         var hasDigit = false
         var hasLowerCase = false
         var hasUpperCase = false
