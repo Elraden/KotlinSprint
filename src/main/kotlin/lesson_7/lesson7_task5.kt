@@ -4,32 +4,32 @@ fun main() {
     println("Введите длину пароля (не менее 6 символов)")
     val userPasswordLength = readln().toInt()
     if (userPasswordLength >= 6) {
-        var randomPasswordString: String;
         val digits = '0'..'9'
         val lowerCase = 'a'..'z'
         val upperCase = 'A'..'Z'
         val allCharacters = digits + lowerCase + upperCase
-        var hasDigit: Boolean
-        var hasLowerCase: Boolean
-        var hasUpperCase: Boolean
 
-        do {
-            randomPasswordString = ""
-            for (i in 1..userPasswordLength) {
-                randomPasswordString += allCharacters.random()
-            }
+        var randomPasswordString = "";
+        var hasDigit = false
+        var hasLowerCase = false
+        var hasUpperCase = false
 
-            hasDigit = false
-            hasUpperCase = false
-            hasLowerCase = false
+        for (i in 1..userPasswordLength - 2) {
+            val char = allCharacters.random()
+            randomPasswordString += char
 
-            for (char in randomPasswordString) {
-                if (char in digits) hasDigit = true
-                if (char in lowerCase) hasLowerCase = true
-                if (char in upperCase) hasUpperCase = true
-                if (hasDigit && hasLowerCase && hasUpperCase) break
-            }
-        } while (!(hasDigit && hasLowerCase && hasUpperCase))
+            if (char in digits) hasDigit = true
+            if (char in lowerCase) hasLowerCase = true
+            if (char in upperCase) hasUpperCase = true
+        }
+
+        randomPasswordString += if (!hasDigit) digits.random()
+        else if (!hasLowerCase) lowerCase.random()
+        else if (!hasUpperCase) upperCase.random()
+        else allCharacters.random()
+
+        randomPasswordString += allCharacters.random()
+
         println("Ваш пароль: $randomPasswordString")
     } else {
         println("Длина пароля должна быть не менее 6 символов")
