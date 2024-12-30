@@ -13,37 +13,23 @@ fun main() {
     )
 
     println("Список ингредиентов:")
-    var ingredientsString = "["
-    for (i in dishIngredients.indices) {
-        ingredientsString += if (i != dishIngredients.size - 1) {
-            "${dishIngredients[i]}, "
-        } else {
-            "${dishIngredients[i]}]"
-        }
-    }
+    val ingredientsString = dishIngredients.joinToString(separator = ", ", prefix = "[", postfix = "]")
     println(ingredientsString)
 
     println("Какой ингредиент вы хотели бы заменить?")
     val userDishIngredient = readln()
 
-    if (userDishIngredient !in dishIngredients) {
+    val ingredientIndex = dishIngredients.indexOf(userDishIngredient)
+    if (ingredientIndex == -1) {
         println("Такого ингредиента нет в списке")
         return
-    } else {
-        println("Какой ингредиент вы хотели бы добавить?")
-        val addIngredientAsk = readln()
-        val index = dishIngredients.indexOf(userDishIngredient)
-        dishIngredients[index] = addIngredientAsk
     }
 
-    var newIngredientsString = "["
-    for (i in dishIngredients.indices) {
-        newIngredientsString += if (i != dishIngredients.size - 1) {
-            "${dishIngredients[i]}, "
-        } else {
-            "${dishIngredients[i]}]"
-        }
-    }
+    println("Какой ингредиент вы хотели бы добавить?")
+    val newIngredient = readln()
+    dishIngredients[ingredientIndex] = newIngredient
+
+    val newIngredientsString = dishIngredients.joinToString(separator = ", ", prefix = "[", postfix = "]")
 
     println("Готово! Вы сохранили следующий список:\n$newIngredientsString")
 
