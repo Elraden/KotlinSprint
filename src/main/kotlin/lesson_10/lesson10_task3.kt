@@ -11,11 +11,11 @@ fun generatePassword(length: Int): String {
     var passwordString = ""
     for (i in 1..length) {
         val randomNumber = (1..9).random()
-        val randomSymbol = " !\"#\$%&'()*+,-./".random()
+        val randomSymbolASCIICode = (32..47).random()
         if (i % 2 == 1) {
             passwordString += randomNumber
         } else {
-            passwordString += randomSymbol
+            passwordString += randomSymbolASCIICode.toChar()
         }
     }
     return passwordString
