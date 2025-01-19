@@ -1,9 +1,9 @@
 package org.example.lesson_14
 
 open class Liner(
-    val name: String,
-    val speed: Int = 50,
-    val capacity: Int = 5000,
+    open val name: String,
+    open val speed: Int = 50,
+    open val capacity: Int = 5000,
 ) {
     open fun loadCargo() {
         println("$name выдвигает горизонтальный трап со шкафута")
@@ -14,9 +14,9 @@ open class Liner(
 }
 
 class Cargo(
-    name: String,
-    speed: Int = 30,
-    capacity: Int = 7000
+    override val name: String,
+    override val speed: Int = 30,
+    override val capacity: Int = 7000
 ): Liner(name, speed, capacity) {
     override fun loadCargo() {
         println("$name активирует погрузочный кран")
@@ -24,9 +24,9 @@ class Cargo(
 }
 
 class IceBreaker(
-    name: String,
-    speed: Int = 20,
-    capacity: Int = 3000
+    override val name: String,
+    override val speed: Int = 20,
+    override val capacity: Int = 3000
 ): Liner(name, speed, capacity) {
     fun breakIce() {
         println("\"$name\" начал колоть лёд")
