@@ -1,56 +1,8 @@
 package org.example.lesson_11
 
-class ForumMember(
-    val userId: Int,
-    val userName: String,
-) { }
+class ForumMember(val userId: Int, val userName: String) { }
 
-class ForumMessage(
-    val authorId: Int,
-    val message: String,
-) { }
-
-class MemberBuilder(
-    private val forum: Forum) {
-    private var userName: String = ""
-
-    fun setUserName(name: String): MemberBuilder {
-        userName = name
-        return this
-    }
-
-    fun create(): ForumMember {
-        val user = ForumMember(forum.userIdCounter++, userName)
-        forum.members.add(user)
-        return user
-    }
-}
-
-class MessageBuilder(private val forum: Forum) {
-    private var authorId: Int = -1
-    private var message: String = ""
-
-    fun setAuthorId(id: Int): MessageBuilder {
-        authorId = id
-        return this
-    }
-
-    fun setMessage(content: String): MessageBuilder {
-        message = content
-        return this
-    }
-
-    fun create(): ForumMessage? {
-        val authorExists = forum.members.any {member -> member.userId == authorId}
-        if (!authorExists) {
-            println("Пользователь с id $authorId не найден")
-            return null
-        }
-        val forumMessage = ForumMessage(authorId, message)
-        forum.messages.add(forumMessage)
-        return forumMessage
-    }
-}
+class ForumMessage(val authorId: Int, val message: String, ) { }
 
 class Forum {
     val members = mutableListOf<ForumMember>()
@@ -58,16 +10,20 @@ class Forum {
     var userIdCounter = 1
 
     fun createNewUser(userName: String): ForumMember {
-        return MemberBuilder(this)
-            .setUserName(userName)
-            .create()
+        val user = ForumMember(userIdCounter++, userName)
+        members.add(user)
+        return user
     }
 
     fun createNewMessage(authorId: Int, message: String): ForumMessage? {
-        return MessageBuilder(this)
-            .setAuthorId(authorId)
-            .setMessage(message)
-            .create()
+        val authorExists = members.any {member -> member.userId == authorId}
+        if (!authorExists) {
+            println("Пользователь с id $authorId не найден")
+            return null
+        }
+        val forumMessage = ForumMessage(authorId, message)
+        messages.add(forumMessage)
+        return forumMessage
     }
 
     fun printThread() {
