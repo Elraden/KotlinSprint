@@ -18,9 +18,19 @@ class PrecipitationAmount(private val precipitationAmount: Double) : WeatherStat
 
 }
 
+interface WeatherCommand {
+    fun execute(stats: WeatherStationStats): String
+}
+
+class SendWeatherDataCommand : WeatherCommand {
+    override fun execute(stats: WeatherStationStats): String {
+        return stats.getData()
+    }
+}
+
 class WeatherServer {
-    fun sendData(stats: WeatherStationStats) {
-        println("Отправка данных на сервер: ${stats.getData()}")
+    fun sendData(command: WeatherCommand, stats: WeatherStationStats) {
+        println("Отправка данных на сервер: ${command.execute(stats)}")
     }
 }
 
@@ -29,7 +39,8 @@ fun main() {
     val precipitationAmount = PrecipitationAmount(3.1)
 
     val server = WeatherServer()
+    val sendCommand = SendWeatherDataCommand()
 
-    server.sendData(temperature)
-    server.sendData(precipitationAmount)
+    server.sendData(sendCommand, temperature)
+    server.sendData(sendCommand, precipitationAmount)
 }
