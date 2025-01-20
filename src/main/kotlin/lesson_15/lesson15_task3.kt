@@ -15,8 +15,7 @@ abstract class User(
     }
 }
 
-class RegularUser(name: String) : User(name) {
-}
+class RegularUser(name: String) : User(name)
 
 class Administrator(name: String): User(name) {
     fun deleteMessage(messageId: Int) {
