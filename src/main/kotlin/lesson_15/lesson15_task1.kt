@@ -1,4 +1,4 @@
-package org.example.lesson15
+package org.example.lesson_15
 
 interface FlyingCreatures {
     fun fly(): String
