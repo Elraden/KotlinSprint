@@ -36,6 +36,7 @@ fun main() {
     val duck = Duck()
 
     println(carp.swim())
+
     println(seagull.fly())
     println(duck.fly())
     println(duck.swim())
