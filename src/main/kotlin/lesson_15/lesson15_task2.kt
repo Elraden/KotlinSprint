@@ -24,7 +24,11 @@ interface WeatherCommand {
 
 class SendWeatherDataCommand : WeatherCommand {
     override fun execute(stats: WeatherStationStats): String {
-        return stats.getData()
+        return when (stats) {
+            is Temperature -> stats.getData()
+            is PrecipitationAmount -> stats.getData()
+            else -> "Неизвестный тип данных"
+        }
     }
 }
 
