@@ -1,26 +1,31 @@
 package org.example.lesson_18
 
-abstract class Dice {
+abstract class Dice(private val sides: Int) {
     abstract fun rollDice()
+
+    protected fun roll(): Int {
+        return (1..sides).random()  // Используем общее поле sides
+    }
+
 }
 
-class Dice4: Dice() {
+class Dice4: Dice(4) {
     override fun rollDice() {
-        val randomNumber = (1..4).random()
+        val randomNumber = roll()
         println("На 4-х гранном кубике вы выбросили число: $randomNumber")
     }
 }
 
-class Dice6: Dice() {
+class Dice6: Dice(6) {
     override fun rollDice() {
-        val randomNumber = (1..6).random()
+        val randomNumber = roll()
         println("На 6-х гранном кубике вы выбросили число: $randomNumber")
     }
 }
 
-class Dice8: Dice() {
+class Dice8: Dice(8) {
     override fun rollDice() {
-        val randomNumber = (1..8).random()
+        val randomNumber = roll()
         println("На 8-х гранном кубике вы выбросили число: $randomNumber")
     }
 }
