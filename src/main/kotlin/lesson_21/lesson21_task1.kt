@@ -1,4 +1,4 @@
-package org.example.lesson21
+package org.example.lesson_21
 
 fun String.vowelCount(): Int {
     var vowelCount = 0
